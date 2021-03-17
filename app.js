@@ -1,5 +1,6 @@
-const addButton = document.querySelector('.addButton');
+const addBookButton = document.querySelector('.addBookButton');
 const bookSection = document.querySelector('.bookSelection')
+const submit = document.querySelector('.submit')
 
 let myLibrary = [];
 
@@ -11,8 +12,6 @@ function Book() {
         this.genre = '',
         this.read = '',
 }
-
-
 
 function addBookToLibrary() {
     let newBook = new Book();
@@ -45,3 +44,24 @@ function appendBook(array) {
         newContainer.append(newGenre);
     }
 }
+
+function openForm() {
+    document.getElementById('openForm').style.display = "block"
+}
+
+function closeForm() {
+    document.getElementById('openForm').style.display = "none"
+}
+
+addBookButton.addEventListener('click', function () {
+    openForm()
+
+})
+
+submit.addEventListener('click', function () {
+    closeForm();
+    addBookToLibrary();
+    appendBook();
+
+})
+
