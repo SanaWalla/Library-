@@ -1,49 +1,53 @@
 const addBookButton = document.querySelector('.addBookButton');
-const bookSection = document.querySelector('.bookSelection')
-const submit = document.querySelector('.submit')
+const bookSection = document.querySelector('.bookSection');
+const submit = document.querySelector('.submit');
 
 let myLibrary = [];
 
-
-//constructor function
-function Book() {
-    this.title = '',
-        this.author = '',
-        this.genre = '',
-        this.read = '',
+function Book(title, author, genre, read) {
+    this.title = title;
+    this.author = author;
+    this.genre = genre;
+    this.read = read;
 }
 
 function addBookToLibrary() {
-    let newBook = new Book();
+    const title = document.querySelector('#title').value
+    const author = document.querySelector('#author').value
+    const genre = document.querySelector('#genre').value
+    const read = document.querySelector('#read').value
 
-    newBook.title = bookForm.title.value;
-    newBook.author = bookForm.author.value;
-    newBook.genre = bookForm.genre.value;
-    newBook.read = bookForm.read.value;
+    let newBook = new Book(title, author, genre, read);
 
     myLibrary.push(newBook);
-}
+    console.log(myLibrary);
+    appendBook();
 }
 
-function appendBook(array) {
-    for (i = 0; i < array.length; i++) {
-        let newContainer = document.createElement('div')
-        let heading = document.createElement('h2');
-        let newTitle = document.createElement('p');
-        let newAuthor = document.createElement('p');
-        let newGenre = document.createElement('p');
-        let hasRead = document.createElement('p');
-        heading.textContent = `Book ${i + 1}`
-        newTitle.textContent = array[i].title;
-        newAuthor.textContent = array[i].author;
-        newGenre.TextContent = array[i].genre;
-        bookSection.append(newContainer);
-        newContainer.append(heading);
-        newContainer.append(newTitle);
-        newContainer.append(newAuthor);
-        newContainer.append(newGenre);
+function appendBook() {
+    for (let i = 0; i < myLibrary.length; i++) {
+        const card = document.createElement('div');
+        const newTitle = document.createElement('h3');
+        const newAuthor = document.createElement('h3');
+        const newGenre = document.createElement('h3');
+        const status = document.createElement('h4');
+        newTitle.textContent = myLibrary[i].title;
+        newAuthor.textContent = `author: ${myLibrary[i].author}`;
+        newGenre.textContent = `genre: ${myLibrary[i].genre}`;
+
+        if (read === 'on') {
+            status.textContent = 'Status: read'
+        } else {
+            status.textContent = 'Status: in progress'
+        }
+        card.appendChild(newTitle);
+        card.appendChild(newAuthor);
+        card.appendChild(newGenre);
+        card.appendChild(status);
+        bookSection.appendChild(card);
     }
 }
+
 
 function openForm() {
     document.getElementById('openForm').style.display = "block"
@@ -58,10 +62,10 @@ addBookButton.addEventListener('click', function () {
 
 })
 
-submit.addEventListener('click', function () {
-    closeForm();
+submit.addEventListener('click', function (e) {
+    e.preventDefault();
     addBookToLibrary();
-    appendBook();
-
+    closeForm();
+    console.log(myLibrary);
 })
 
