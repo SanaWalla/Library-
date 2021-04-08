@@ -14,35 +14,44 @@
 <body>
 
     <h1>My Library</h1>
+    <div class="grid-container">
 
-    <div class="bookSection"></div>
-
-    <button class="addBookButton">add book</button>
-
-    <section class='popup' id='openForm'>
-        <button class="xForm">×</button>
-        <form name="bookForm" class="bookForm" autocomplete="off">
-            <div class="form">
-                <label for="title">Title:</label>
-                <input type="text" name="title" id="title" class="formSection">
-            </div>
-            <div class="form">
-                <label for="author">Author:</label>
-                <input type="text" name="author" id="author" class="formSection">
-            </div>
-            <div class="form">
-                <label for="genre">Genre:</label>
-                <input type="text" name="genre" id="genre" class="formSection">
-            </div>
-            <div class="form readForm">
-                <label for="read">Read:</label>
-                <input type="radio" name="read" id="read" class="formSection">
-            </div>
-            <button class="submit">Submit</button>
-        </form>
-    </section>
+        <div class='grid-child'>
+            <button class="addBookButton">add book</button>
 
 
+            <section class='popup' id='openForm'>
+                <button class="xForm">×</button>
+                <form name="bookForm" class="bookForm" autocomplete="off">
+                    <div class="form">
+
+                        <input type="text" name="title" id="title" class="formSection" placeholder="Title">
+                    </div>
+                    <div class="form">
+
+                        <input type="text" name="author" id="author" class="formSection" placeholder="Author">
+                    </div>
+                    <div class="form">
+
+                        <input type="text" name="genre" id="genre" class="formSection" placeholder="Genre">
+                    </div>
+                    <div class="form readForm">
+                        <label for="read">Read:</label>
+                        <input type="radio" id="read">
+
+                        </label>
+                    </div>
+                    <button class="submit">Submit</button>
+                </form>
+            </section>
+        </div>
+
+
+
+        <div class="grid-child">
+            <div class="bookSection"></div>
+        </div>
+    </div>
     <script src="app.js"></script>
 
 </body>

@@ -35,25 +35,35 @@ function addBookToLibrary() {
 function appendBook() {
     for (let i = 0; i < myLibrary.length; i++) {
         const card = document.createElement('div');
-        const newTitle = document.createElement('h3');
-        const newAuthor = document.createElement('h3');
-        const newGenre = document.createElement('h3');
+        const newTitle = document.createElement('h2');
+        const newAuthor = document.createElement('h4');
+        const newGenre = document.createElement('h4');
+        const readStatus = document.createElement('input');
+        readStatus.setAttribute('type', 'checkbox');
+        readStatus.setAttribute('id', 'readStatus');
+        let label = document.createElement('label');
+        label.setAttribute('for', 'readStatus');
+        label.innerHTML = 'Read: ';
         const remove = document.createElement('button');
-        newTitle.textContent = myLibrary[i].title;
+        newTitle.textContent = `"${myLibrary[i].title}"`;
         newAuthor.textContent = `author: ${myLibrary[i].author}`;
         newGenre.textContent = `genre: ${myLibrary[i].genre}`;
         remove.textContent = 'remove';
 
+
+        card.classList.add('card');
+        newTitle.classList.add('newTitle', 'cardSection');
+        newAuthor.classList.add('bookInfo', 'cardSection');
+        newGenre.classList.add('bookInfo', 'cardSection');
+        remove.classList.add('removeButton', 'cardSection');
+
         card.appendChild(newTitle);
         card.appendChild(newAuthor);
         card.appendChild(newGenre);
-        if (read.checked) {
-            read.checked = true;
-            card.appendChild(readForm);
-        } else {
-            read.checked = false;
-            card.appendChild(readForm);
-        }
+        card.appendChild(label);
+        card.appendChild(readStatus);
+
+
         card.appendChild(remove);
         bookSection.appendChild(card);
 
@@ -67,7 +77,6 @@ function resetForm() {
     formSection.forEach(forms => {
         forms.value = '';
     })
-    read.checked = false;
 }
 
 function openForm() {

@@ -25,24 +25,91 @@
 .popup {
     display: none;
     position: fixed;
-    margin: auto;
+    margin: 0 30px;
+    padding: 10px;
+    border: none;
+    border-radius: 15px;
+    border: 1px solid rgb(183, 198, 194, 0.5);
 }
 
+.submit {
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.formSection {
+    padding: 5px;
+}
 
 h1 {
     color: #a4c3b2;
-    font-size: 4em;
+    font-size: 3em;
     padding: 1em;
-    
-    letter-spacing: 5px;
+    letter-spacing: 3px;
 }
 
 .addBookButton {
-    margin: 70px;
+    margin: 50px;
     padding: 5px 10px;
-    border-radius: 15px;
+    border-radius: 10px;
 }
 
-.popup {
-    margin: 70px;
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 10px;
 }
+
+
+.card {
+    border: none;
+    background-color: #eaf4f4;
+    max-width: 300px;
+    border-radius: 15px;
+    text-align: center;
+    letter-spacing: 2px;
+    padding: 10px 0;
+}
+
+.newTitle {
+    font-size: 2em;
+    font-style: italic;
+}
+
+.bookInfo {
+    font-size: 1em;
+}
+
+
+
+input[type=text] {
+    padding:10px;
+    margin: 10px;
+    border:0;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+  }
+
+.readForm {
+      margin: 20px;
+  }
+
+.xForm {
+      float: right;
+      padding: 2px 5px;
+      border-radius: 5px;
+  }
+
+.cardSection {
+      padding: 10px 0;
+  }
+
+.removeButton {
+    border-radius: 10px;
+    background-color: #6b9080;
+    display: block;
+    padding: 5px 10px;
+    margin: 10px auto;
+}
+  
