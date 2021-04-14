@@ -5,11 +5,11 @@ const bookSection = document.querySelector('.bookSection');
 const submit = document.querySelector('.submit');
 const bookForm = document.querySelector('.bookForm');
 const formSection = document.querySelectorAll('.formSection');
-const read = document.querySelector('#read');
 const readForm = document.querySelector('.readForm');
 const xForm = document.querySelector('.xForm');
 
 let myLibrary = [];
+
 
 function Book(title, author, genre, read) {
     this.title = title;
@@ -38,18 +38,22 @@ function appendBook() {
         const newTitle = document.createElement('h2');
         const newAuthor = document.createElement('h4');
         const newGenre = document.createElement('h4');
-        const readStatus = document.createElement('input');
-        readStatus.setAttribute('type', 'checkbox');
-        readStatus.setAttribute('id', 'readStatus');
-        let label = document.createElement('label');
-        label.setAttribute('for', 'readStatus');
-        label.innerHTML = 'Read: ';
+        const readButton = document.createElement('button');
         const remove = document.createElement('button');
         newTitle.textContent = `"${myLibrary[i].title}"`;
         newAuthor.textContent = `author: ${myLibrary[i].author}`;
         newGenre.textContent = `genre: ${myLibrary[i].genre}`;
         remove.textContent = 'remove';
 
+        readButton.addEventListener('click', function(){
+            if (read === 'on'){
+                readButton.textContent = read;
+                readButton.body.style.backgroundColor="#f6fff8"
+            } else {
+                readButton.textContent = Not Read;
+                readButton.body.style.backgroundColor="#a4c3b2"
+            }
+        })
 
         card.classList.add('card');
         newTitle.classList.add('newTitle', 'cardSection');
@@ -60,8 +64,8 @@ function appendBook() {
         card.appendChild(newTitle);
         card.appendChild(newAuthor);
         card.appendChild(newGenre);
-        card.appendChild(label);
-        card.appendChild(readStatus);
+        // card.appendChild(label);
+        card.appendChild(read);
 
 
         card.appendChild(remove);
@@ -70,7 +74,15 @@ function appendBook() {
         remove.addEventListener('click', function () {
             bookSection.removeChild(card);
         })
+
+
+
     }
+}
+
+function toggle(read, card) {
+    if (read.checked === true) card.classList.add('dark');
+    if (read.checked === false) card.classList.add('light');
 }
 
 function resetForm() {
@@ -104,4 +116,9 @@ submit.addEventListener('click', function (e) {
     closeForm();
 })
 
+const allReads = document.querySelectorAll('checkbox');
+allReads.forEach(function (read) {
+    if (read.checked === true) read.classList.add('dark');
+    if (read.checked === false) read.classList.add('light');
+})
 
