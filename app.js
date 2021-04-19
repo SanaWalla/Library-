@@ -19,54 +19,55 @@ function Book(title, author, genre, read) {
 }
 
 function addBookToLibrary() {
-    const title = document.querySelector('#title').value
-    const author = document.querySelector('#author').value
-    const genre = document.querySelector('#genre').value
-    const read = document.querySelector('#read').value
+    const title = document.querySelector('#title').value;
+    const author = document.querySelector('#author').value;
+    const genre = document.querySelector('#genre').value;
+    const read = document.querySelector('#read').checked;
 
 
     let newBook = new Book(title, author, genre, read);
 
     myLibrary.push(newBook);
 
-    appendBook();
+    appendBook(myLibrary);
+
+    bookForm.reset();
 }
 
-function appendBook() {
-    for (let i = 0; i < myLibrary.length; i++) {
+function appendBook(library) {
+    for (let i = 0; i < library.length; i++) {
         const card = document.createElement('div');
         const newTitle = document.createElement('h2');
         const newAuthor = document.createElement('h4');
         const newGenre = document.createElement('h4');
         const readButton = document.createElement('button');
         const remove = document.createElement('button');
-        newTitle.textContent = `"${myLibrary[i].title}"`;
-        newAuthor.textContent = `author: ${myLibrary[i].author}`;
-        newGenre.textContent = `genre: ${myLibrary[i].genre}`;
+        newTitle.textContent = `"${library[i].title}"`;
+        newAuthor.textContent = `author: ${library[i].author}`;
+        newGenre.textContent = `genre: ${library[i].genre}`;
         remove.textContent = 'remove';
-
-        readButton.addEventListener('click', function(){
-            if (read === 'on'){
-                readButton.textContent = read;
-                readButton.body.style.backgroundColor="#f6fff8"
-            } else {
-                readButton.textContent = Not Read;
-                readButton.body.style.backgroundColor="#a4c3b2"
-            }
-        })
 
         card.classList.add('card');
         newTitle.classList.add('newTitle', 'cardSection');
         newAuthor.classList.add('bookInfo', 'cardSection');
         newGenre.classList.add('bookInfo', 'cardSection');
         remove.classList.add('removeButton', 'cardSection');
+        readButton.classList.add('readButton')
 
         card.appendChild(newTitle);
         card.appendChild(newAuthor);
         card.appendChild(newGenre);
-        // card.appendChild(label);
-        card.appendChild(read);
+        card.appendChild(readButton);
 
+        console.log(library[i].read);
+
+        if (library[i].read === true) {
+            readButton.textContent = "Read";
+            readButton.style.backgroundColor = "#fcfcfc"
+        } else {
+            readButton.textContent = "Not Read";
+            readButton.style.backgroundColor = "#ffe1a8"
+        }
 
         card.appendChild(remove);
         bookSection.appendChild(card);
@@ -75,20 +76,18 @@ function appendBook() {
             bookSection.removeChild(card);
         })
 
-
+        readButton.addEventListener('click', () => {
+            library[i].read = !library[i].read;
+            if (library[i].read) {
+                readButton.textContent = "Read";
+                readButton.style.backgroundColor = "#fcfcfc"
+            } else {
+                readButton.textContent = "Not Read";
+                readButton.style.backgroundColor = "#ffe1a8"
+            }
+        })
 
     }
-}
-
-function toggle(read, card) {
-    if (read.checked === true) card.classList.add('dark');
-    if (read.checked === false) card.classList.add('light');
-}
-
-function resetForm() {
-    formSection.forEach(forms => {
-        forms.value = '';
-    })
 }
 
 function openForm() {
@@ -106,7 +105,6 @@ xForm.addEventListener('click', function (e) {
 
 addBookButton.addEventListener('click', function () {
     myLibrary = [];
-    resetForm();
     openForm()
 })
 
@@ -116,9 +114,4 @@ submit.addEventListener('click', function (e) {
     closeForm();
 })
 
-const allReads = document.querySelectorAll('checkbox');
-allReads.forEach(function (read) {
-    if (read.checked === true) read.classList.add('dark');
-    if (read.checked === false) read.classList.add('light');
-})
 
