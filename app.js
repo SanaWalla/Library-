@@ -1,5 +1,3 @@
-
-
 const addBookButton = document.querySelector('.addBookButton');
 const bookSection = document.querySelector('.bookSection');
 const submit = document.querySelector('.submit');
@@ -42,10 +40,10 @@ function appendBook(library) {
         const newGenre = document.createElement('h4');
         const readButton = document.createElement('button');
         const remove = document.createElement('button');
-        newTitle.textContent = `"${library[i].title}"`;
-        newAuthor.textContent = `author: ${library[i].author}`;
-        newGenre.textContent = `genre: ${library[i].genre}`;
-        remove.textContent = 'remove';
+        newTitle.textContent = `${library[i].title}`;
+        newAuthor.textContent = `Author: ${library[i].author}`;
+        newGenre.textContent = `Genre: ${library[i].genre}`;
+        remove.textContent = 'Remove';
 
         card.classList.add('card');
         newTitle.classList.add('newTitle', 'cardSection');
@@ -58,8 +56,6 @@ function appendBook(library) {
         card.appendChild(newAuthor);
         card.appendChild(newGenre);
         card.appendChild(readButton);
-
-        console.log(library[i].read);
 
         if (library[i].read === true) {
             readButton.textContent = "Read";
